@@ -1,0 +1,6 @@
+c:\users\lozzr\documents\visual studio 2015\Projects\keyloggerattack\keyloggerattack\bin\Debug\keyloggerattack.exe.config
+c:\users\lozzr\documents\visual studio 2015\Projects\keyloggerattack\keyloggerattack\bin\Debug\keyloggerattack.exe
+c:\users\lozzr\documents\visual studio 2015\Projects\keyloggerattack\keyloggerattack\bin\Debug\keyloggerattack.pdb
+c:\users\lozzr\documents\visual studio 2015\Projects\keyloggerattack\keyloggerattack\obj\Debug\keyloggerattack.csprojResolveAssemblyReference.cache
+c:\users\lozzr\documents\visual studio 2015\Projects\keyloggerattack\keyloggerattack\obj\Debug\keyloggerattack.exe
+c:\users\lozzr\documents\visual studio 2015\Projects\keyloggerattack\keyloggerattack\obj\Debug\keyloggerattack.pdb
