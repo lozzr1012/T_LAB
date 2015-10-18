@@ -1,0 +1,11 @@
+C:\Users\lozzr\documents\visual studio 2015\Projects\keyloggerattack\Statupwindow\bin\Debug\Statupwindow.exe.config
+C:\Users\lozzr\documents\visual studio 2015\Projects\keyloggerattack\Statupwindow\bin\Debug\Statupwindow.exe
+C:\Users\lozzr\documents\visual studio 2015\Projects\keyloggerattack\Statupwindow\bin\Debug\Statupwindow.pdb
+C:\Users\lozzr\documents\visual studio 2015\Projects\keyloggerattack\Statupwindow\obj\Debug\Statupwindow.csprojResolveAssemblyReference.cache
+C:\Users\lozzr\documents\visual studio 2015\Projects\keyloggerattack\Statupwindow\obj\Debug\Statupwindow.Properties.Resources.resources
+C:\Users\lozzr\documents\visual studio 2015\Projects\keyloggerattack\Statupwindow\obj\Debug\Statupwindow.csproj.GenerateResource.Cache
+C:\Users\lozzr\documents\visual studio 2015\Projects\keyloggerattack\Statupwindow\obj\Debug\Statupwindow.exe
+C:\Users\lozzr\documents\visual studio 2015\Projects\keyloggerattack\Statupwindow\obj\Debug\Statupwindow.pdb
+C:\Users\lozzr\documents\visual studio 2015\Projects\keyloggerattack\Statupwindow\obj\Debug\Statupwindow.Form1.resources
+C:\Users\lozzr\Documents\Visual Studio 2015\Projects\keyloggerattack\Statupwindow\bin\Debug\keyloggerattack.exe
+C:\Users\lozzr\Documents\Visual Studio 2015\Projects\keyloggerattack\Statupwindow\bin\Debug\keyloggerattack.pdb
