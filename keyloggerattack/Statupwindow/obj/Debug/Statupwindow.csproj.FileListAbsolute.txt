@@ -9,3 +9,29 @@ C:\Users\lozzr\documents\visual studio 2015\Projects\keyloggerattack\Statupwindo
 C:\Users\lozzr\documents\visual studio 2015\Projects\keyloggerattack\Statupwindow\obj\Debug\Statupwindow.Form1.resources
 C:\Users\lozzr\Documents\Visual Studio 2015\Projects\keyloggerattack\Statupwindow\bin\Debug\keyloggerattack.exe
 C:\Users\lozzr\Documents\Visual Studio 2015\Projects\keyloggerattack\Statupwindow\bin\Debug\keyloggerattack.pdb
+C:\Users\lozzr\Documents\Visual Studio 2015\Projects\keyloggerattack\Statupwindow\bin\Debug\LibSVMsharp.dll
+C:\Users\lozzr\Documents\Visual Studio 2015\Projects\keyloggerattack\Statupwindow\bin\Debug\LibSVMsharp.pdb
+C:\Users\lozzr\Documents\Visual Studio 2015\Projects\keyloggerattack\Statupwindow\obj\Debug\Statupwindow.Form2.resources
+D:\Keylogger\keyloggerattack\Statupwindow\bin\Debug\Statupwindow.exe.config
+D:\Keylogger\keyloggerattack\Statupwindow\obj\Debug\Statupwindow.exe
+D:\Keylogger\keyloggerattack\Statupwindow\obj\Debug\Statupwindow.pdb
+D:\Keylogger\keyloggerattack\Statupwindow\bin\Debug\Statupwindow.exe
+D:\Keylogger\keyloggerattack\Statupwindow\bin\Debug\Statupwindow.pdb
+D:\Keylogger\keyloggerattack\Statupwindow\bin\Debug\keyloggerattack.exe
+D:\Keylogger\keyloggerattack\Statupwindow\bin\Debug\LibSVMsharp.dll
+D:\Keylogger\keyloggerattack\Statupwindow\bin\Debug\keyloggerattack.pdb
+D:\Keylogger\keyloggerattack\Statupwindow\bin\Debug\LibSVMsharp.pdb
+D:\Keylogger\keyloggerattack\Statupwindow\obj\Debug\Statupwindow.csprojResolveAssemblyReference.cache
+D:\Keylogger\keyloggerattack\Statupwindow\obj\Debug\Statupwindow.Form1.resources
+D:\Keylogger\keyloggerattack\Statupwindow\obj\Debug\Statupwindow.Form2.resources
+D:\Keylogger\keyloggerattack\Statupwindow\obj\Debug\Statupwindow.Properties.Resources.resources
+D:\Keylogger\keyloggerattack\Statupwindow\obj\Debug\Statupwindow.csproj.GenerateResource.Cache
+D:\Keylogger\keyloggerattack\Statupwindow\bin\Debug\IKVM.OpenJDK.Charsets.dll
+D:\Keylogger\keyloggerattack\Statupwindow\bin\Debug\IKVM.OpenJDK.Core.dll
+D:\Keylogger\keyloggerattack\Statupwindow\bin\Debug\IKVM.OpenJDK.Security.dll
+D:\Keylogger\keyloggerattack\Statupwindow\bin\Debug\IKVM.OpenJDK.SwingAWT.dll
+D:\Keylogger\keyloggerattack\Statupwindow\bin\Debug\IKVM.OpenJDK.Text.dll
+D:\Keylogger\keyloggerattack\Statupwindow\bin\Debug\IKVM.OpenJDK.Util.dll
+D:\Keylogger\keyloggerattack\Statupwindow\bin\Debug\IKVM.OpenJDK.XML.API.dll
+D:\Keylogger\keyloggerattack\Statupwindow\bin\Debug\IKVM.Runtime.dll
+D:\Keylogger\keyloggerattack\Statupwindow\bin\Debug\LIBSVM.NET.dll

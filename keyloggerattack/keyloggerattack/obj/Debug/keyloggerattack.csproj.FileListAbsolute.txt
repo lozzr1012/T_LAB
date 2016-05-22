@@ -4,3 +4,19 @@ c:\users\lozzr\documents\visual studio 2015\Projects\keyloggerattack\keyloggerat
 c:\users\lozzr\documents\visual studio 2015\Projects\keyloggerattack\keyloggerattack\obj\Debug\keyloggerattack.csprojResolveAssemblyReference.cache
 c:\users\lozzr\documents\visual studio 2015\Projects\keyloggerattack\keyloggerattack\obj\Debug\keyloggerattack.exe
 c:\users\lozzr\documents\visual studio 2015\Projects\keyloggerattack\keyloggerattack\obj\Debug\keyloggerattack.pdb
+C:\Users\lozzr\Documents\Visual Studio 2015\Projects\keyloggerattack\keyloggerattack\bin\Debug\LibSVMsharp.pdb
+D:\Keylogger\keyloggerattack\keyloggerattack\bin\Debug\keyloggerattack.exe.config
+D:\Keylogger\keyloggerattack\keyloggerattack\bin\Debug\keyloggerattack.exe
+D:\Keylogger\keyloggerattack\keyloggerattack\bin\Debug\keyloggerattack.pdb
+D:\Keylogger\keyloggerattack\keyloggerattack\bin\Debug\LibSVMsharp.pdb
+D:\Keylogger\keyloggerattack\keyloggerattack\obj\Debug\keyloggerattack.csprojResolveAssemblyReference.cache
+D:\Keylogger\keyloggerattack\keyloggerattack\obj\Debug\keyloggerattack.exe
+D:\Keylogger\keyloggerattack\keyloggerattack\obj\Debug\keyloggerattack.pdb
+D:\Keylogger\keyloggerattack\keyloggerattack\bin\Debug\IKVM.OpenJDK.Charsets.dll
+D:\Keylogger\keyloggerattack\keyloggerattack\bin\Debug\IKVM.OpenJDK.Core.dll
+D:\Keylogger\keyloggerattack\keyloggerattack\bin\Debug\IKVM.OpenJDK.Security.dll
+D:\Keylogger\keyloggerattack\keyloggerattack\bin\Debug\IKVM.OpenJDK.SwingAWT.dll
+D:\Keylogger\keyloggerattack\keyloggerattack\bin\Debug\IKVM.OpenJDK.Text.dll
+D:\Keylogger\keyloggerattack\keyloggerattack\bin\Debug\IKVM.OpenJDK.Util.dll
+D:\Keylogger\keyloggerattack\keyloggerattack\bin\Debug\IKVM.OpenJDK.XML.API.dll
+D:\Keylogger\keyloggerattack\keyloggerattack\bin\Debug\IKVM.Runtime.dll

