@@ -18,7 +18,9 @@ namespace Statupwindow
     {
         // 記錄檔路徑
         //在這裡自訂記錄檔的儲存位置，例如: "C:\\log.txt"，必須加上檔案名稱和附檔名。
-
+        /// <summary>
+        /// 
+        /// </summary>
 
 
         readonly public static string logPath = @"..\..\..\keyloggerattack\Dataset\log.txt";

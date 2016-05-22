@@ -35,3 +35,6 @@ D:\Keylogger\keyloggerattack\Statupwindow\bin\Debug\IKVM.OpenJDK.Util.dll
 D:\Keylogger\keyloggerattack\Statupwindow\bin\Debug\IKVM.OpenJDK.XML.API.dll
 D:\Keylogger\keyloggerattack\Statupwindow\bin\Debug\IKVM.Runtime.dll
 D:\Keylogger\keyloggerattack\Statupwindow\bin\Debug\LIBSVM.NET.dll
+C:\Users\Torch\Source\Repos\T_LAB\keyloggerattack\Statupwindow\bin\Debug\Statupwindow.exe.config
+C:\Users\Torch\Source\Repos\T_LAB\keyloggerattack\Statupwindow\obj\Debug\Statupwindow.exe
+C:\Users\Torch\Source\Repos\T_LAB\keyloggerattack\Statupwindow\obj\Debug\Statupwindow.pdb
