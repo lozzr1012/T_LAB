@@ -17,8 +17,14 @@ namespace Statupwindow
     {
         public static void Read(string i)//第一次創建SVM檔案時，是用此檔案
         {
-            string logPath = @"..\..\..\keyloggerattack\Dataset\SVM_"+i+".txt";
-            StreamWriter sw = new StreamWriter(logPath,true);
+            string logPath_1 = @"..\..\..\keyloggerattack\Dataset\SVM_"+ i +"_east.txt";//東
+            string logPath_2 = @"..\..\..\keyloggerattack\Dataset\SVM_" + i + "_ground.txt";//地
+            string logPath_3 = @"..\..\..\keyloggerattack\Dataset\SVM_" + i + "_sea.txt";//海
+            string logPath_4 = @"..\..\..\keyloggerattack\Dataset\SVM_" + i + "_station.txt";//臺
+            StreamWriter sw_1 = new StreamWriter(logPath_1, true);//東
+            StreamWriter sw_2 = new StreamWriter(logPath_2, true);//地
+            StreamWriter sw_3 = new StreamWriter(logPath_3, true);//海
+            StreamWriter sw_4 = new StreamWriter(logPath_4, true);//臺
             //string s1;
             int txtLength = 0, s2int = 0, keyint = 0, Dwelltimeint = 0, Intervalint = 0, stringlength = 0;
             int j = 0, outputint = 0;
@@ -119,102 +125,192 @@ namespace Statupwindow
                     j++;
                 }
             */
+                /* while (j < txtLength)
+                 {
+                     if (key[j] == "D2" && key[j + 1] == "K" && key[j + 2] == "D7")//的
+                     {
+                         while (outputint < 2)
+                         {
+                             sw.WriteLine("1 1:1 2:" + Interval[j + outputint] + " 3:" + Dwelltime[j + outputint] + " 4:" + (Dwelltime[j + outputint] + Interval[j + outputint] + Dwelltime[j + outputint + 1]) + " 5:" + (Dwelltime[j + outputint] + Interval[j + outputint]) + " 6:" + (Interval[j + outputint] + Dwelltime[j + outputint + 1]));
+                             outputint++;
+                         }
+                         outputint = 0;
+                     }
+                     if (key[j] == "U" && key[j + 1] == "Space")//一
+                     {
+                         while (outputint < 1)
+                         {
+                             sw.WriteLine("1 1:2 2:" + Interval[j + outputint] + " 3:" + Dwelltime[j + outputint] + " 4:" + (Dwelltime[j + outputint] + Interval[j + outputint] + Dwelltime[j + outputint + 1]) + " 5:" + (Dwelltime[j + outputint] + Interval[j + outputint]) + " 6:" + (Interval[j + outputint] + Dwelltime[j + outputint + 1]));
+                             outputint++;
+                         }
+                         outputint = 0;
+                     }
+                     if (key[j] == "G" && key[j + 1] == "D4")//是
+                     {
+                         while (outputint < 1)
+                         {
+                             sw.WriteLine("1 1:3 2:" + Interval[j + outputint] + " 3:" + Dwelltime[j + outputint] + " 4:" + (Dwelltime[j + outputint] + Interval[j + outputint] + Dwelltime[j + outputint + 1]) + " 5:" + (Dwelltime[j + outputint] + Interval[j + outputint]) + " 6:" + (Interval[j + outputint] + Dwelltime[j + outputint + 1]));
+                             outputint++;
+                         }
+                         outputint = 0;
+                     }
+                     if (key[j] == "X" && key[j + 1] == "K" && key[j + 2] == "D7")//了
+                     {
+                         while (outputint < 2)
+                         {
+                             sw.WriteLine("1 1:4 2:" + Interval[j + outputint] + " 3:" + Dwelltime[j + outputint] + " 4:" + (Dwelltime[j + outputint] + Interval[j + outputint] + Dwelltime[j + outputint + 1]) + " 5:" + (Dwelltime[j + outputint] + Interval[j + outputint]) + " 6:" + (Interval[j + outputint] + Dwelltime[j + outputint + 1]));
+                             outputint++;
+                         }
+                         outputint = 0;
+                     }
+                     if (key[j] == "J" && key[j + 1] == "I" && key[j + 2] == "D3")//我
+                     {
+                         while (outputint < 2)
+                         {
+                             sw.WriteLine("1 1:5 2:" + Interval[j + outputint] + " 3:" + Dwelltime[j + outputint] + " 4:" + (Dwelltime[j + outputint] + Interval[j + outputint] + Dwelltime[j + outputint + 1]) + " 5:" + (Dwelltime[j + outputint] + Interval[j + outputint]) + " 6:" + (Interval[j + outputint] + Dwelltime[j + outputint + 1]));
+                             outputint++;
+                         }
+                         outputint = 0;
+                     }
+                     if (key[j] == "D1" && key[j + 1] == "J" && key[j + 2] == "D4")//不
+                     {
+                         while (outputint < 2)
+                         {
+                             sw.WriteLine("1 1:6 2:" + Interval[j + outputint] + " 3:" + Dwelltime[j + outputint] + " 4:" + (Dwelltime[j + outputint] + Interval[j + outputint] + Dwelltime[j + outputint + 1]) + " 5:" + (Dwelltime[j + outputint] + Interval[j + outputint]) + " 6:" + (Interval[j + outputint] + Dwelltime[j + outputint + 1]));
+                             outputint++;
+                         }
+                         outputint = 0;
+                     }
+                     if (key[j] == "B" && key[j + 1] == "P" && key[j + 2] == "D6")//人
+                     {
+                         while (outputint < 2)
+                         {
+                             sw.WriteLine("1 1:7 2:" + Interval[j + outputint] + " 3:" + Dwelltime[j + outputint] + " 4:" + (Dwelltime[j + outputint] + Interval[j + outputint] + Dwelltime[j + outputint + 1]) + " 5:" + (Dwelltime[j + outputint] + Interval[j + outputint]) + " 6:" + (Interval[j + outputint] + Dwelltime[j + outputint + 1]));
+                             outputint++;
+                         }
+                         outputint = 0;
+                     }
+                     if (key[j] == "Y" && key[j + 1] == "D9" && key[j + 2] == "D4")//在
+                     {
+                         while (outputint < 2)
+                         {
+                             sw.WriteLine("1 1:8 2:" + Interval[j + outputint] + " 3:" + Dwelltime[j + outputint] + " 4:" + (Dwelltime[j + outputint] + Interval[j + outputint] + Dwelltime[j + outputint + 1]) + " 5:" + (Dwelltime[j + outputint] + Interval[j + outputint]) + " 6:" + (Interval[j + outputint] + Dwelltime[j + outputint + 1]));
+                             outputint++;
+                         }
+                         outputint = 0;
+                     }
+                     if (key[j] == "W" && key[j + 1] == "D8" && key[j + 2] == "Space")//他
+                     {
+                         while (outputint < 2)
+                         {
+                             sw.WriteLine("1 1:9 2:" + Interval[j + outputint] + " 3:" + Dwelltime[j + outputint] + " 4:" + (Dwelltime[j + outputint] + Interval[j + outputint] + Dwelltime[j + outputint + 1]) + " 5:" + (Dwelltime[j + outputint] + Interval[j + outputint]) + " 6:" + (Interval[j + outputint] + Dwelltime[j + outputint + 1]));
+                             outputint++;
+                         }
+                         outputint = 0;
+                     }
+                     if (key[j] == "U" && key[j + 1] == "OemPeriod" && key[j + 2] == "D3")//有
+                     {
+                         while (outputint < 2)
+                         {
+                             sw.WriteLine("1 1:10 2:" + Interval[j + outputint] + " 3:" + Dwelltime[j + outputint] + " 4:" + (Dwelltime[j + outputint] + Interval[j + outputint] + Dwelltime[j + outputint + 1]) + " 5:" + (Dwelltime[j + outputint] + Interval[j + outputint]) + " 6:" + (Interval[j + outputint] + Dwelltime[j + outputint + 1]));
+                             outputint++;
+                         }
+                         outputint = 0;
+                     }
+                     j++;
+                 }*/
+
                 while (j < txtLength)
                 {
-                    if (key[j] == "D2" && key[j + 1] == "K" && key[j + 2] == "D7")//的
-                    {
-                        while (outputint < 2)
-                        {
-                            sw.WriteLine("1 1:1 2:" + Interval[j + outputint] + " 3:" + Dwelltime[j + outputint] + " 4:" + (Dwelltime[j + outputint] + Interval[j + outputint] + Dwelltime[j + outputint + 1]) + " 5:" + (Dwelltime[j + outputint] + Interval[j + outputint]) + " 6:" + (Interval[j + outputint] + Dwelltime[j + outputint + 1]));
-                            outputint++;
-                        }
-                        outputint = 0;
-                    }
-                    if (key[j] == "U" && key[j + 1] == "Space")//一
+                    if (key[j] == "D2" && key[j + 1] == "J" && key[j + 2] == "OemQuestion" && key[j + 3] == "Space" && key[j + 4] == "D1" && key[j + 5] == "O" && key[j + 6] == "D3")//東北
                     {
                         while (outputint < 1)
                         {
-                            sw.WriteLine("1 1:2 2:" + Interval[j + outputint] + " 3:" + Dwelltime[j + outputint] + " 4:" + (Dwelltime[j + outputint] + Interval[j + outputint] + Dwelltime[j + outputint + 1]) + " 5:" + (Dwelltime[j + outputint] + Interval[j + outputint]) + " 6:" + (Interval[j + outputint] + Dwelltime[j + outputint + 1]));
+                            sw_1.WriteLine("1 1:1 2:" + Interval[j + outputint] + " 3:" + Dwelltime[j + outputint] + " 4:" + (Dwelltime[j + outputint] + Interval[j + outputint] + Dwelltime[j + outputint + 1]) + " 5:" + (Dwelltime[j + outputint] + Interval[j + outputint]) + " 6:" + (Interval[j + outputint] + Dwelltime[j + outputint + 1]));
                             outputint++;
                         }
                         outputint = 0;
                     }
-                    if (key[j] == "G" && key[j + 1] == "D4")//是
+                    if (key[j] == "D2" && key[j + 1] == "J" && key[j + 2] == "OemQuestion" && key[j + 3] == "Space" && key[j + 4] == "D1" && key[j + 5] == "J" && key[j + 6] == "D4")//東部
                     {
                         while (outputint < 1)
                         {
-                            sw.WriteLine("1 1:3 2:" + Interval[j + outputint] + " 3:" + Dwelltime[j + outputint] + " 4:" + (Dwelltime[j + outputint] + Interval[j + outputint] + Dwelltime[j + outputint + 1]) + " 5:" + (Dwelltime[j + outputint] + Interval[j + outputint]) + " 6:" + (Interval[j + outputint] + Dwelltime[j + outputint + 1]));
+                            sw_1.WriteLine("1 1:2 2:" + Interval[j + outputint] + " 3:" + Dwelltime[j + outputint] + " 4:" + (Dwelltime[j + outputint] + Interval[j + outputint] + Dwelltime[j + outputint + 1]) + " 5:" + (Dwelltime[j + outputint] + Interval[j + outputint]) + " 6:" + (Interval[j + outputint] + Dwelltime[j + outputint + 1]));
                             outputint++;
                         }
                         outputint = 0;
                     }
-                    if (key[j] == "X" && key[j + 1] == "K" && key[j + 2] == "D7")//了
+                    if (key[j] == "D2" && key[j + 1] == "U" && key[j + 2] == "D4" && key[j + 3] == "V" && key[j + 4] == "U" && key[j + 5] == "OemQuestion" && key[j + 6] == "D6")//地形
                     {
-                        while (outputint < 2)
+                        while (outputint < 1)
                         {
-                            sw.WriteLine("1 1:4 2:" + Interval[j + outputint] + " 3:" + Dwelltime[j + outputint] + " 4:" + (Dwelltime[j + outputint] + Interval[j + outputint] + Dwelltime[j + outputint + 1]) + " 5:" + (Dwelltime[j + outputint] + Interval[j + outputint]) + " 6:" + (Interval[j + outputint] + Dwelltime[j + outputint + 1]));
+                            sw_2.WriteLine("1 1:1 2:" + Interval[j + outputint] + " 3:" + Dwelltime[j + outputint] + " 4:" + (Dwelltime[j + outputint] + Interval[j + outputint] + Dwelltime[j + outputint + 1]) + " 5:" + (Dwelltime[j + outputint] + Interval[j + outputint]) + " 6:" + (Interval[j + outputint] + Dwelltime[j + outputint + 1]));
                             outputint++;
                         }
                         outputint = 0;
                     }
-                    if (key[j] == "J" && key[j + 1] == "I" && key[j + 2] == "D3")//我
+                    if (key[j] == "D2" && key[j + 1] == "U" && key[j + 2] == "D4" && key[j + 3] == "F" && key[j + 4] == "M" && key[j + 5] == "Space")//地區
                     {
-                        while (outputint < 2)
+                        while (outputint < 1)
                         {
-                            sw.WriteLine("1 1:5 2:" + Interval[j + outputint] + " 3:" + Dwelltime[j + outputint] + " 4:" + (Dwelltime[j + outputint] + Interval[j + outputint] + Dwelltime[j + outputint + 1]) + " 5:" + (Dwelltime[j + outputint] + Interval[j + outputint]) + " 6:" + (Interval[j + outputint] + Dwelltime[j + outputint + 1]));
+                            sw_2.WriteLine("1 1:2 2:" + Interval[j + outputint] + " 3:" + Dwelltime[j + outputint] + " 4:" + (Dwelltime[j + outputint] + Interval[j + outputint] + Dwelltime[j + outputint + 1]) + " 5:" + (Dwelltime[j + outputint] + Interval[j + outputint]) + " 6:" + (Interval[j + outputint] + Dwelltime[j + outputint + 1]));
                             outputint++;
                         }
                         outputint = 0;
                     }
-                    if (key[j] == "D1" && key[j + 1] == "J" && key[j + 2] == "D4")//不
+                    if (key[j] == "D2" && key[j + 1] == "U" && key[j + 2] == "D4" && key[j + 3] == "G" && key[j + 4] == "D4")//地勢
                     {
-                        while (outputint < 2)
+                        while (outputint < 1)
                         {
-                            sw.WriteLine("1 1:6 2:" + Interval[j + outputint] + " 3:" + Dwelltime[j + outputint] + " 4:" + (Dwelltime[j + outputint] + Interval[j + outputint] + Dwelltime[j + outputint + 1]) + " 5:" + (Dwelltime[j + outputint] + Interval[j + outputint]) + " 6:" + (Interval[j + outputint] + Dwelltime[j + outputint + 1]));
+                            sw_2.WriteLine("1 1:3 2:" + Interval[j + outputint] + " 3:" + Dwelltime[j + outputint] + " 4:" + (Dwelltime[j + outputint] + Interval[j + outputint] + Dwelltime[j + outputint + 1]) + " 5:" + (Dwelltime[j + outputint] + Interval[j + outputint]) + " 6:" + (Interval[j + outputint] + Dwelltime[j + outputint + 1]));
                             outputint++;
                         }
                         outputint = 0;
                     }
-                    if (key[j] == "B" && key[j + 1] == "P" && key[j + 2] == "D6")//人
+                    if (key[j] == "C" && key[j + 1] == "D9" && key[j + 2] == "D3" && key[j + 3] == "D0" && key[j + 4] == "D4")//海岸
                     {
-                        while (outputint < 2)
+                        while (outputint < 1)
                         {
-                            sw.WriteLine("1 1:7 2:" + Interval[j + outputint] + " 3:" + Dwelltime[j + outputint] + " 4:" + (Dwelltime[j + outputint] + Interval[j + outputint] + Dwelltime[j + outputint + 1]) + " 5:" + (Dwelltime[j + outputint] + Interval[j + outputint]) + " 6:" + (Interval[j + outputint] + Dwelltime[j + outputint + 1]));
+                            sw_3.WriteLine("1 1:1 2:" + Interval[j + outputint] + " 3:" + Dwelltime[j + outputint] + " 4:" + (Dwelltime[j + outputint] + Interval[j + outputint] + Dwelltime[j + outputint + 1]) + " 5:" + (Dwelltime[j + outputint] + Interval[j + outputint]) + " 6:" + (Interval[j + outputint] + Dwelltime[j + outputint + 1]));
                             outputint++;
                         }
                         outputint = 0;
                     }
-                    if (key[j] == "Y" && key[j + 1] == "D9" && key[j + 2] == "D4")//在
+                    if (key[j] == "C" && key[j + 1] == "D9" && key[j + 2] == "D3" && key[j + 3] == "E" && key[j + 4] == "OemPeriod" && key[j + 5] == "Space")//海溝
                     {
-                        while (outputint < 2)
+                        while (outputint < 1)
                         {
-                            sw.WriteLine("1 1:8 2:" + Interval[j + outputint] + " 3:" + Dwelltime[j + outputint] + " 4:" + (Dwelltime[j + outputint] + Interval[j + outputint] + Dwelltime[j + outputint + 1]) + " 5:" + (Dwelltime[j + outputint] + Interval[j + outputint]) + " 6:" + (Interval[j + outputint] + Dwelltime[j + outputint + 1]));
+                            sw_3.WriteLine("1 1:2 2:" + Interval[j + outputint] + " 3:" + Dwelltime[j + outputint] + " 4:" + (Dwelltime[j + outputint] + Interval[j + outputint] + Dwelltime[j + outputint + 1]) + " 5:" + (Dwelltime[j + outputint] + Interval[j + outputint]) + " 6:" + (Interval[j + outputint] + Dwelltime[j + outputint + 1]));
                             outputint++;
                         }
                         outputint = 0;
                     }
-                    if (key[j] == "W" && key[j + 1] == "D8" && key[j + 2] == "Space")//他
+                    if (key[j] == "W" && key[j + 1] == "D9" && key[j + 2] == "D6" && key[j + 3] == "D1" && key[j + 4] == "O" && key[j + 5] == "D3")//台北
                     {
-                        while (outputint < 2)
+                        while (outputint < 1)
                         {
-                            sw.WriteLine("1 1:9 2:" + Interval[j + outputint] + " 3:" + Dwelltime[j + outputint] + " 4:" + (Dwelltime[j + outputint] + Interval[j + outputint] + Dwelltime[j + outputint + 1]) + " 5:" + (Dwelltime[j + outputint] + Interval[j + outputint]) + " 6:" + (Interval[j + outputint] + Dwelltime[j + outputint + 1]));
+                            sw_4.WriteLine("1 1:1 2:" + Interval[j + outputint] + " 3:" + Dwelltime[j + outputint] + " 4:" + (Dwelltime[j + outputint] + Interval[j + outputint] + Dwelltime[j + outputint + 1]) + " 5:" + (Dwelltime[j + outputint] + Interval[j + outputint]) + " 6:" + (Interval[j + outputint] + Dwelltime[j + outputint + 1]));
                             outputint++;
                         }
                         outputint = 0;
                     }
-                    if (key[j] == "U" && key[j + 1] == "OemPeriod" && key[j + 2] == "D3")//有
+                    if (key[j] == "W" && key[j + 1] == "D9" && key[j + 2] == "D6" && key[j + 3] == "D2" && key[j + 4] == "U" && key[j + 5] == "D4")//台地
                     {
-                        while (outputint < 2)
+                        while (outputint < 1)
                         {
-                            sw.WriteLine("1 1:10 2:" + Interval[j + outputint] + " 3:" + Dwelltime[j + outputint] + " 4:" + (Dwelltime[j + outputint] + Interval[j + outputint] + Dwelltime[j + outputint + 1]) + " 5:" + (Dwelltime[j + outputint] + Interval[j + outputint]) + " 6:" + (Interval[j + outputint] + Dwelltime[j + outputint + 1]));
+                            sw_4.WriteLine("1 1:2 2:" + Interval[j + outputint] + " 3:" + Dwelltime[j + outputint] + " 4:" + (Dwelltime[j + outputint] + Interval[j + outputint] + Dwelltime[j + outputint + 1]) + " 5:" + (Dwelltime[j + outputint] + Interval[j + outputint]) + " 6:" + (Interval[j + outputint] + Dwelltime[j + outputint + 1]));
                             outputint++;
                         }
                         outputint = 0;
                     }
                     j++;
+
                 }
 
-                    sw.Close();
+                sw_1.Close();
+                sw_2.Close();
+                sw_3.Close();
+                sw_4.Close();
                 sr.Close();
             }
         }

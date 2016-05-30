@@ -217,27 +217,45 @@ namespace Statupwindow
           //  }
                 if (counter == 20)//每運作十秒，系統會將使用者的鍵擊資料轉成SVM_After_ID，再透過SVM_After_ID建模成SVM_After_ID_model.txt，透過該模型和最初的模型進行SVM預測，看精準率多少。
             {
-                    if (File.Exists(@"..\..\..\keyloggerattack\Dataset\log.txt"))
+                Thread workerThread_run = new Thread(new ThreadStart(ThreadMethod_Run));
+                workerThread_run.Name = "工作執行緒";
+                Thread workerThread_svm = new Thread(new ThreadStart(ThreadMethod_svm));
+                workerThread_svm.Name = "SVM執行緒";
+                if (File.Exists(@"..\..\..\keyloggerattack\Dataset\log.txt"))
                     {
-                        Thread workerThread_run = new Thread(new ThreadStart(ThreadMethod_Run));
-                        workerThread_run.Name = "工作執行緒";
+                        
                         workerThread_run.Start();
                         while (workerThread_run.ThreadState != ThreadState.Stopped)
                         {
                         }
-                         Thread workerThread_svm = new Thread(new ThreadStart(ThreadMethod_svm));
-                         workerThread_svm.Name = "SVM執行緒";
+                         
                          workerThread_svm.Start();
                          while (workerThread_svm.ThreadState != ThreadState.Stopped)
                         {
                         }
-                    counter = 0;
                     }
+                if (counter == 25)
+                {
+                    //workerThread_run.Interrupt();
+                   // workerThread_svm.Interrupt();
                     counter = 0;
+                }
+
+                /*if(counter == 40)
+                {
+                    workerThread_run.();
+                    workerThread_svm.Resume();
+                }*/
+
                 }
             }
 
         private void label2_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
         {
 
         }

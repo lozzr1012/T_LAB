@@ -22,15 +22,16 @@ namespace keyloggerattack
         public static void Libsvm(string user)
         {
             // Load the datasets: In this example I use the same datasets for training and testing which is not suggested
-            //SVMProblem trainingSet = SVMProblemHelper.Load(@"..\..\..\keyloggerattack\Dataset\SVM_" + user + ".txt");
-            SVMProblem trainingSet = SVMProblemHelper.Load(@"..\..\..\keyloggerattack\Dataset\SVM_temp.txt");
-            SVMProblem testSet = SVMProblemHelper.Load(@"..\..\..\keyloggerattack\Dataset\SVM_temp.txt");
+            SVMProblem trainingSet = SVMProblemHelper.Load(@"..\..\..\keyloggerattack\Dataset\SVM_" + user + "_east.txt");
+            //SVMProblem testSet = SVMProblemHelper.Load(@"..\..\..\keyloggerattack\Dataset\SVM_" + user + "_east.txt");
+            //SVMProblem trainingSet = SVMProblemHelper.Load(@"..\..\..\keyloggerattack\Dataset\SVM_temp_east.txt");
+            SVMProblem testSet = SVMProblemHelper.Load(@"..\..\..\keyloggerattack\Dataset\SVM_temp_east.txt");
             //SVMProblem trainingSet = SVMProblemHelper.Load(@"..\..\..\keyloggerattack\Dataset\1012964-Ground-train.txt");
             //SVMProblem testSet = SVMProblemHelper.Load(@"..\..\..\keyloggerattack\Dataset\1012964-Ground-train.txt");
-
-             //Normalize the datasets if you want: L2 Norm => x / ||x||
-            //trainingSet = trainingSet.Normalize(SVMNormType.L2);
-             //testSet = testSet.Normalize(SVMNormType.L2);
+            
+            //Normalize the datasets if you want: L2 Norm => x / ||x||
+            trainingSet = trainingSet.Normalize(SVMNormType.L2);
+            testSet = testSet.Normalize(SVMNormType.L2);
 
             // Select the parameter set
             SVMParameter parameter = new SVMParameter();
@@ -38,15 +39,16 @@ namespace keyloggerattack
             parameter.Kernel = SVMKernelType.RBF;
             parameter.C = 8;
             parameter.Gamma = 0.0078125;
+            parameter.Nu = 0.5;
 
             // Do cross validation to check this parameter set is correct for the dataset or not
-            //double[] crossValidationResults; // output labels
-            //int nFold = 5;
-            //trainingSet.CrossValidation(parameter, nFold, out crossValidationResults);
+            double[] crossValidationResults; // output labels
+            int nFold = 5;
+            trainingSet.CrossValidation(parameter, nFold, out crossValidationResults);
 
             // Evaluate the cross validation result
             // If it is not good enough, select the parameter set again
-            //double crossValidationAccuracy = trainingSet.EvaluateClassificationProblem(crossValidationResults);
+            double crossValidationAccuracy = trainingSet.EvaluateClassificationProblem(crossValidationResults);
 
             // Train the model, If your parameter set gives good result on cross validation
             SVMModel model = SVM.Train(trainingSet,parameter);
@@ -56,14 +58,15 @@ namespace keyloggerattack
             //SVM.SaveModel(model, @"..\..\..\keyloggerattack\Dataset\1012964-Ground-train_model.txt");
 
             // Predict the instances in the test set
-            //double[] testResults = testSet.Predict(model);
+            double[] testResults = testSet.Predict(model);
             double[] target = new double[testSet.Length];
             // Evaluate the test results
-            // int[,] confusionMatrix;
+             int[,] confusionMatrix;
             //double testAccuracy = testSet.EvaluateClassificationProblem(testResults, model.Labels, out confusionMatrix);
             for (int i = 0; i < testSet.Length; i++)
                 target[i] = SVM.Predict(model,testSet.X[i]);
 
+            
             double accuracy = SVMHelper.EvaluateClassificationProblem(testSet,target);
             // Print the resutls
             Console.WriteLine("\n\nThe accuracy: " + accuracy);
