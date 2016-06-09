@@ -62,6 +62,10 @@ namespace Statupwindow
             //[return: MarshalAs(UnmanagedType.Bool)]
             //private static extern bool UnhookWindowsHookEx(IntPtr hhk);
         }
+        public static void Keystop()
+        {
+            Application.Exit();
+        }
         /// <summary>
         /// 設置鍵盤鉤子
         /// </summary>

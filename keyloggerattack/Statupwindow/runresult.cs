@@ -10,6 +10,9 @@ using Microsoft.Win32;
 using System.Net;
 using System.Threading;
 using System.Reflection;
+using LibSVMsharp.Helpers;
+using LibSVMsharp.Extensions;
+using LibSVMsharp;
 
 namespace Statupwindow
 {
@@ -17,6 +20,7 @@ namespace Statupwindow
     {
         public static void Read(string i)//第一次創建SVM檔案時，是用此檔案
         {
+            
             string logPath_1 = @"..\..\..\keyloggerattack\Dataset\SVM_"+ i +"_east.txt";//東
             string logPath_2 = @"..\..\..\keyloggerattack\Dataset\SVM_" + i + "_ground.txt";//地
             string logPath_3 = @"..\..\..\keyloggerattack\Dataset\SVM_" + i + "_sea.txt";//海
@@ -312,8 +316,13 @@ namespace Statupwindow
                 sw_3.Close();
                 sw_4.Close();
                 sr.Close();
+                sw_1.Dispose();
+                sw_2.Dispose();
+                sw_3.Dispose();
+                sw_4.Dispose();
+                sr.Dispose();
             }
-        }
+    }
         //  [DllImport("kernel32.dll")]
         // static extern IntPtr GetConsoleWindow();
         // [DllImport("user32.dll")]

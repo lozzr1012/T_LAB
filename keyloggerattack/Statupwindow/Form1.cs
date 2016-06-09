@@ -12,8 +12,13 @@ using System.Runtime.InteropServices;
 using System.IO;
 namespace Statupwindow
 {
+    
     public partial class Form1 : Form
     {
+      
+
+        public static int Confidencelevel = 10;
+
         int counter = 0;
         public Form1()
         {
@@ -107,7 +112,7 @@ namespace Statupwindow
         public void svmresult()
         {
             //Thread t3 = new Thread(LIB.Libsvm);
-            ThreadPool.QueueUserWorkItem(o => LIB.Libsvm(textBox1.Text));
+            ThreadPool.QueueUserWorkItem(o => LIB.Libsvm(textBox1.Text, Confidencelevel));
             //t3.Start();
         }
 
@@ -225,21 +230,21 @@ namespace Statupwindow
                     {
                         
                         workerThread_run.Start();
-                        while (workerThread_run.ThreadState != ThreadState.Stopped)
+                        /*while (workerThread_run.ThreadState != ThreadState.Stopped)
                         {
-                        }
+                        }*/
                          
                          workerThread_svm.Start();
-                         while (workerThread_svm.ThreadState != ThreadState.Stopped)
+                         /*while (workerThread_svm.ThreadState != ThreadState.Stopped)
                         {
-                        }
+                        }*/
                     }
-                if (counter == 25)
+                /*if (counter == 25)
                 {
                     //workerThread_run.Interrupt();
                    // workerThread_svm.Interrupt();
                     counter = 0;
-                }
+                }*/
 
                 /*if(counter == 40)
                 {

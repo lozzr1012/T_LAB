@@ -31,7 +31,20 @@ namespace Statupwindow
         {
 
         }
+        private void Restart()
+        {
+            Thread thtmp = new Thread(new System.Threading.ParameterizedThreadStart(run));
+            object appName = Application.ExecutablePath;
+            Thread.Sleep(6000);
+            thtmp.Start(appName);
+        }
 
+        private void run(Object obj)
+        {
+            System.Diagnostics.Process ps = new System.Diagnostics.Process();
+            ps.StartInfo.FileName = obj.ToString();
+            ps.Start();
+        }
         private void button1_Click(object sender, EventArgs e)
         {
             Thread collectThread = new Thread(new ThreadStart(ThreadMethod_collect));
@@ -70,16 +83,32 @@ namespace Statupwindow
                 if(Numofarticles == 1)
                 {
                     DialogResult result;
-    
-                    result = MessageBox.Show("資料蒐集完成!開始進行模組建立。");
+                    DialogResult result2;
+                    result = MessageBox.Show("資料蒐集完成!將重新啟動程式並登入您的帳戶。");
+
+                    File.Copy(@"..\..\..\keyloggerattack\Dataset\log.txt", @"..\..\..\keyloggerattack\Dataset\" + textBox2.Text + ".txt");
+                    Thread workerThread_run = new Thread(new ThreadStart(ThreadMethod_Run));
+                    workerThread_run.Name = "工作執行緒";
+                    workerThread_run.Start();
                     if (result == DialogResult.OK)
                     {
-                        this.Close();
-                        F1.WindowState = FormWindowState.Minimized;
-                        File.Copy(@"..\..\..\keyloggerattack\Dataset\log.txt", @"..\..\..\keyloggerattack\Dataset\" + textBox2.Text + ".txt");
+                        
+
+                        Thread workerThread_svm = new Thread(new ThreadStart(ThreadMethod_svm));
+                        workerThread_svm.Name = "SVM執行緒";
+                        workerThread_svm.Start();
+                        File.Delete(@"..\..\..\keyloggerattack\Dataset\log.txt");
+                        workerThread_run.Join();
+                        workerThread_svm.Join();
+                        //this.Close();
+                        //F1.WindowState = FormWindowState.Minimized;
+                        /*File.Copy(@"..\..\..\keyloggerattack\Dataset\log.txt", @"..\..\..\keyloggerattack\Dataset\" + textBox2.Text + ".txt");
                         Thread workerThread_run = new Thread(new ThreadStart(ThreadMethod_Run));
                         workerThread_run.Name = "工作執行緒";
                         workerThread_run.Start();
+                        Thread workerThread_svm = new Thread(new ThreadStart(ThreadMethod_svm));
+                        workerThread_svm.Name = "SVM執行緒";
+                        workerThread_svm.Start();*/
                         //workerThread_run.IsBackground = true;
                         //workerThread_run.Abort();
                         //collectThread.Abort();
@@ -97,7 +126,17 @@ namespace Statupwindow
                         workerThread_svm.Start();
                        // workerThread_svm.IsBackground = true;
                         //workerThread_svm.Abort();*/
-                        File.Delete(@"..\..\..\keyloggerattack\Dataset\log.txt");
+
+                        
+                        result2 = MessageBox.Show("請重新啟動您的程式。");
+                        if (result2 == DialogResult.OK)
+                        {
+                            workerThread_run.Abort();
+                            workerThread_svm.Abort();
+                            keystroke.Keystop();
+                            Application.ExitThread();
+                            Restart();
+                        }
                     }
 
                     
@@ -156,6 +195,12 @@ namespace Statupwindow
             t1.Start();
         }
 
+        private void Collectstop()
+        {
+            Thread t1 = new Thread(keystroke.Keystop);
+            t1.Start();
+        }
+
         public void Runresult()
         {
             ThreadPool.QueueUserWorkItem(o => runresult.Read(textBox2.Text));
@@ -164,7 +209,7 @@ namespace Statupwindow
         public void svmresult()
         {
             //Thread t3 = new Thread(LIB.Libsvm);
-            ThreadPool.QueueUserWorkItem(o => LIB.Libsvm(textBox2.Text));
+            ThreadPool.QueueUserWorkItem(o => LIB2.Libsvm(textBox2.Text));
             //t3.Start();
         }
 
