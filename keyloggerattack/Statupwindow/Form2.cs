@@ -11,21 +11,21 @@ using System.Runtime.InteropServices;
 using keyloggerattack;
 using System.Windows.Forms;
 using System.IO;
-//11月22號─執行緒問題(尚未解決)
 namespace Statupwindow
 {
     
     public partial class Form2 : Form
     {
         public int Numofarticles = 0;
-        private Form1 F1;
+
+        private Form3 F3;
         //public int VersionNum = 1;
-        public Form2(Form1 f1)
+        public Form2(Form3 f3,string Name)
         {
             InitializeComponent();
-            F1 = f1;
+            F3 = f3;
         }
-
+        int counter;
 
         private void labelbox1_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -50,14 +50,14 @@ namespace Statupwindow
             Thread collectThread = new Thread(new ThreadStart(ThreadMethod_collect));
             collectThread.Name = "蒐集工作執行緒";
             // ManualResetEvent MTestTdEvent = new ManualResetEvent(false);
-            //string logPath = @"..\..\..\keyloggerattack\Dataset\" + textBox2.Text + "-"+ VersionNum +".txt";
-            string logPath = @"..\..\..\keyloggerattack\Dataset\" + textBox2.Text + ".txt";
+            //string logPath = @"..\..\..\keyloggerattack\Dataset\" + Name + "-"+ VersionNum +".txt";
+            string logPath = @"..\..\..\keyloggerattack\Dataset\" + Name + ".txt";
             //VersionNum++;
             /*StreamWriter sw = new StreamWriter(logPath);
-            sw.WriteLine(textBox2.Text);*/
-            if (button1.Text == "開始")
+            sw.WriteLine(Name);*/
+            if (button1.Text == "START")
             {
-                button1.Text = "儲存";
+                button1.Text = "SAVE";
                 textBox1.Enabled = true;
                 //collectThread.IsBackground = true;
                 collectThread.Start();
@@ -66,14 +66,14 @@ namespace Statupwindow
                 }
 
             }
-            else if (button1.Text == "儲存")
+            else if (button1.Text == "SAVE")
             {
                 //MTestTdEvent.WaitOne();
 
                 //Thread.Sleep(1000);
-               // MTestTdEvent.Set();
-               // File.Copy(@"..\..\..\keyloggerattack\Dataset\log.txt", @"..\..\..\keyloggerattack\Dataset\" + textBox2.Text + "-" + (VersionNum-2) + ".txt");
-               // File.Delete(@"..\..\..\keyloggerattack\Dataset\log.txt");
+                // MTestTdEvent.Set();
+                // File.Copy(@"..\..\..\keyloggerattack\Dataset\log.txt", @"..\..\..\keyloggerattack\Dataset\" + Name + "-" + (VersionNum-2) + ".txt");
+                // File.Delete(@"..\..\..\keyloggerattack\Dataset\log.txt");
                 Numofarticles++;
                 textBox1.Text = "";
                 /*if(Numofarticles == 1)
@@ -84,59 +84,72 @@ namespace Statupwindow
                 {
                     DialogResult result;
                     DialogResult result2;
-                    result = MessageBox.Show("資料蒐集完成!將重新啟動程式並登入您的帳戶。");
-
-                    File.Copy(@"..\..\..\keyloggerattack\Dataset\log.txt", @"..\..\..\keyloggerattack\Dataset\" + textBox2.Text + ".txt");
-                    Thread workerThread_run = new Thread(new ThreadStart(ThreadMethod_Run));
-                    workerThread_run.Name = "工作執行緒";
-                    workerThread_run.Start();
-                    if (result == DialogResult.OK)
+                    if (File.Exists(@"..\..\..\keyloggerattack\Dataset\log.txt"))
                     {
-                        
+                        result = MessageBox.Show("資料蒐集完成!將重新啟動程式並登入您的帳戶。");
 
-                        Thread workerThread_svm = new Thread(new ThreadStart(ThreadMethod_svm));
-                        workerThread_svm.Name = "SVM執行緒";
-                        workerThread_svm.Start();
-                        File.Delete(@"..\..\..\keyloggerattack\Dataset\log.txt");
-                        workerThread_run.Join();
-                        workerThread_svm.Join();
-                        //this.Close();
-                        //F1.WindowState = FormWindowState.Minimized;
-                        /*File.Copy(@"..\..\..\keyloggerattack\Dataset\log.txt", @"..\..\..\keyloggerattack\Dataset\" + textBox2.Text + ".txt");
-                        Thread workerThread_run = new Thread(new ThreadStart(ThreadMethod_Run));
-                        workerThread_run.Name = "工作執行緒";
-                        workerThread_run.Start();
-                        Thread workerThread_svm = new Thread(new ThreadStart(ThreadMethod_svm));
-                        workerThread_svm.Name = "SVM執行緒";
-                        workerThread_svm.Start();*/
-                        //workerThread_run.IsBackground = true;
-                        //workerThread_run.Abort();
-                        //collectThread.Abort();
-
-                        /*if (collectThread != null && collectThread.IsAlive)
+                        File.Copy(@"..\..\..\keyloggerattack\Dataset\log.txt", @"..\..\..\keyloggerattack\Dataset\" + Name + ".txt");
+                        //Thread workerThread_run = new Thread(new ThreadStart(ThreadMethod_Run));
+                        //workerThread_run.Name = "工作執行緒";
+                        runresult.Read(Name);
+                        //workerThread_run.Start();
+                        if (result == DialogResult.OK)
                         {
-                            result = MessageBox.Show("還在。");
-                            collectThread.Abort();
-                        }
-                        else
-                            result = MessageBox.Show("不在");*/
 
-                        /*Thread workerThread_svm = new Thread(new ThreadStart(ThreadMethod_svm));
-                        workerThread_svm.Name = "SVM執行緒";
-                        workerThread_svm.Start();
-                       // workerThread_svm.IsBackground = true;
-                        //workerThread_svm.Abort();*/
 
-                        
-                        result2 = MessageBox.Show("請重新啟動您的程式。");
-                        if (result2 == DialogResult.OK)
-                        {
-                            workerThread_run.Abort();
-                            workerThread_svm.Abort();
-                            keystroke.Keystop();
-                            Application.ExitThread();
-                            Restart();
+                            //Thread workerThread_svm = new Thread(new ThreadStart(ThreadMethod_svm));
+                            //runresult.Read(Name);
+                            File.Delete(@"..\..\..\keyloggerattack\Dataset\log.txt");
+                            //workerThread_run.Join();
+                            //workerThread_svm.Join();
+
+                            timer1.Interval = 1000; // 設定每秒觸發一次
+                            timer1.Enabled = true; // 啟動 Timer
+                                                   //this.Close();
+                                                   //F1.WindowState = FormWindowState.Minimized;
+                                                   /*File.Copy(@"..\..\..\keyloggerattack\Dataset\log.txt", @"..\..\..\keyloggerattack\Dataset\" + Name + ".txt");
+                                                   Thread workerThread_run = new Thread(new ThreadStart(ThreadMethod_Run));
+                                                   workerThread_run.Name = "工作執行緒";
+                                                   workerThread_run.Start();
+                                                   Thread workerThread_svm = new Thread(new ThreadStart(ThreadMethod_svm));
+                                                   workerThread_svm.Name = "SVM執行緒";
+                                                   workerThread_svm.Start();*/
+                                                   //workerThread_run.IsBackground = true;
+                                                   //workerThread_run.Abort();
+                                                   //collectThread.Abort();
+
+                            /*if (collectThread != null && collectThread.IsAlive)
+                            {
+                                result = MessageBox.Show("還在。");
+                                collectThread.Abort();
+                            }
+                            else
+                                result = MessageBox.Show("不在");*/
+
+                            /*Thread workerThread_svm = new Thread(new ThreadStart(ThreadMethod_svm));
+                            workerThread_svm.Name = "SVM執行緒";
+                            workerThread_svm.Start();
+                           // workerThread_svm.IsBackground = true;
+                            //workerThread_svm.Abort();*/
+
+                            LIB2.Libsvm(Name);
+                            result2 = MessageBox.Show("請重新啟動您的程式。");
+                            if (result2 == DialogResult.OK)
+                            {
+                                //workerThread_run.Abort();
+                                //workerThread_svm.Abort();
+                                keystroke.Keystop();
+                                Application.ExitThread();
+                                Restart();
+                               // workerThread_run.Abort();
+                                //workerThread_svm.Abort();
+                            }
                         }
+                    }
+                    else
+                    {
+                        result = MessageBox.Show("您並沒有進行鍵擊的動作，請試著鍵入文章內容");
+                        Numofarticles = 0;
                     }
 
                     
@@ -146,7 +159,7 @@ namespace Statupwindow
 
 
         }
-            private void ThreadMethod_collect()
+            public void ThreadMethod_collect()
         {
             Thread.Sleep(1000);
             if (this.InvokeRequired)
@@ -160,7 +173,7 @@ namespace Statupwindow
             }
 
         }
-        private void ThreadMethod_svm()
+        public void ThreadMethod_svm()
         {
             Thread.Sleep(1000);
             if (this.InvokeRequired)
@@ -174,7 +187,7 @@ namespace Statupwindow
             }
 
         }
-        private void ThreadMethod_Run()
+        public void ThreadMethod_Run()
         {
             Thread.Sleep(1000);
             if (this.InvokeRequired)
@@ -203,19 +216,19 @@ namespace Statupwindow
 
         public void Runresult()
         {
-            ThreadPool.QueueUserWorkItem(o => runresult.Read(textBox2.Text));
+            ThreadPool.QueueUserWorkItem(o => runresult.Read(Name));
         }
 
         public void svmresult()
         {
             //Thread t3 = new Thread(LIB.Libsvm);
-            ThreadPool.QueueUserWorkItem(o => LIB2.Libsvm(textBox2.Text));
+            ThreadPool.QueueUserWorkItem(o => LIB2.Libsvm(Name));
             //t3.Start();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            //string logPath = @"..\..\..\keyloggerattack\Dataset\"+textBox2.Text+".txt";
+            //string logPath = @"..\..\..\keyloggerattack\Dataset\"+Name+".txt";
             //StreamWriter sw = new StreamWriter(logPath);
             label2.Visible = true;
             button1.Visible = true;
@@ -241,6 +254,24 @@ namespace Statupwindow
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            if ((File.Exists(@"..\..\..\keyloggerattack\Dataset\log.txt")))
+            {
+                File.Delete(@"..\..\..\keyloggerattack\Dataset\log.txt");
+            }
+            Application.Exit();
         }
     }
 }

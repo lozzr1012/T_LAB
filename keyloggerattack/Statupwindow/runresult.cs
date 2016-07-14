@@ -21,21 +21,30 @@ namespace Statupwindow
         public static void Read(string i)//第一次創建SVM檔案時，是用此檔案
         {
             
-            string logPath_1 = @"..\..\..\keyloggerattack\Dataset\SVM_"+ i +"_east.txt";//東
-            string logPath_2 = @"..\..\..\keyloggerattack\Dataset\SVM_" + i + "_ground.txt";//地
-            string logPath_3 = @"..\..\..\keyloggerattack\Dataset\SVM_" + i + "_sea.txt";//海
-            string logPath_4 = @"..\..\..\keyloggerattack\Dataset\SVM_" + i + "_station.txt";//臺
+            string logPath_1 = @"..\..\..\keyloggerattack\Dataset\SVM_"+ i +"_east.txt";//東(認知因子)
+            string logPath_2 = @"..\..\..\keyloggerattack\Dataset\SVM_" + i + "_Ground.txt";//地(認知因子)
+            string logPath_3 = @"..\..\..\keyloggerattack\Dataset\SVM_" + i + "_sea.txt";//海(認知因子)
+            string logPath_4 = @"..\..\..\keyloggerattack\Dataset\SVM_" + i + "_station.txt";//臺(認知因子)
             StreamWriter sw_1 = new StreamWriter(logPath_1, true);//東
             StreamWriter sw_2 = new StreamWriter(logPath_2, true);//地
             StreamWriter sw_3 = new StreamWriter(logPath_3, true);//海
             StreamWriter sw_4 = new StreamWriter(logPath_4, true);//臺
+
+            string logPath_5 = @"..\..\..\keyloggerattack\Dataset\SVM_Inertia_" + i + "_east.txt";//東(慣性因子)
+            string logPath_6 = @"..\..\..\keyloggerattack\Dataset\SVM_Inertia_" + i + "_Ground.txt";//地(慣性因子)
+            string logPath_7 = @"..\..\..\keyloggerattack\Dataset\SVM_Inertia_" + i + "_sea.txt";//海(慣性因子)
+            string logPath_8 = @"..\..\..\keyloggerattack\Dataset\SVM_Inertia_" + i + "_station.txt";//臺(慣性因子)
+            StreamWriter sw_5 = new StreamWriter(logPath_5, true);//東
+            StreamWriter sw_6 = new StreamWriter(logPath_6, true);//地
+            StreamWriter sw_7 = new StreamWriter(logPath_7, true);//海
+            StreamWriter sw_8 = new StreamWriter(logPath_8, true);//臺
             //string s1;
             int txtLength = 0, s2int = 0, keyint = 0, Dwelltimeint = 0, Intervalint = 0, stringlength = 0;
             int j = 0, outputint = 0;
-            string[] s2 = new string[10000];
-            string[] key = new string[10000];
-            int[] Dwelltime = new int[10000];
-            int[] Interval = new int[10000];
+            string[] s2 = new string[40000];
+            string[] key = new string[40000];
+            int[] Dwelltime = new int[40000];
+            int[] Interval = new int[40000];
             //var handle = GetConsoleWindow();
             //ShowWindow(handle,1);
             if (File.Exists(@"..\..\..\keyloggerattack\Dataset\"+i+".txt"))
@@ -226,6 +235,24 @@ namespace Statupwindow
 
                 while (j < txtLength)
                 {
+                    if (key[j] == "D2" && key[j + 1] == "J" && key[j + 2] == "OemQuestion" && key[j + 3] == "Space")//東(ㄉㄨㄥ)
+                    {
+                        while (outputint < 1)
+                        {
+                            sw_5.WriteLine("1 1:1 2:" + Interval[j + outputint] + " 3:" + Dwelltime[j + outputint] + " 4:" + (Dwelltime[j + outputint] + Interval[j + outputint] + Dwelltime[j + outputint + 1]) + " 5:" + (Dwelltime[j + outputint] + Interval[j + outputint]) + " 6:" + (Interval[j + outputint] + Dwelltime[j + outputint + 1]));
+                            outputint++;
+                        }
+                        outputint = 0;
+                    }
+                    if (key[j] == "D2" && key[j + 1] == "OemQuestion" && key[j + 2] == "J" && key[j + 3] == "Space")//東(ㄉㄥㄨ)
+                    {
+                        while (outputint < 1)
+                        {
+                            sw_5.WriteLine("1 1:2 2:" + Interval[j + outputint] + " 3:" + Dwelltime[j + outputint] + " 4:" + (Dwelltime[j + outputint] + Interval[j + outputint] + Dwelltime[j + outputint + 1]) + " 5:" + (Dwelltime[j + outputint] + Interval[j + outputint]) + " 6:" + (Interval[j + outputint] + Dwelltime[j + outputint + 1]));
+                            outputint++;
+                        }
+                        outputint = 0;
+                    }
                     if (key[j] == "D2" && key[j + 1] == "J" && key[j + 2] == "OemQuestion" && key[j + 3] == "Space" && key[j + 4] == "D1" && key[j + 5] == "O" && key[j + 6] == "D3")//東北
                     {
                         while (outputint < 1)
@@ -240,6 +267,24 @@ namespace Statupwindow
                         while (outputint < 1)
                         {
                             sw_1.WriteLine("1 1:2 2:" + Interval[j + outputint] + " 3:" + Dwelltime[j + outputint] + " 4:" + (Dwelltime[j + outputint] + Interval[j + outputint] + Dwelltime[j + outputint + 1]) + " 5:" + (Dwelltime[j + outputint] + Interval[j + outputint]) + " 6:" + (Interval[j + outputint] + Dwelltime[j + outputint + 1]));
+                            outputint++;
+                        }
+                        outputint = 0;
+                    }
+                    if (key[j] == "D2" && key[j + 1] == "U" && key[j + 2] == "D4")//地(ㄉ一ˋ)
+                    {
+                        while (outputint < 1)
+                        {
+                            sw_6.WriteLine("1 1:1 2:" + Interval[j + outputint] + " 3:" + Dwelltime[j + outputint] + " 4:" + (Dwelltime[j + outputint] + Interval[j + outputint] + Dwelltime[j + outputint + 1]) + " 5:" + (Dwelltime[j + outputint] + Interval[j + outputint]) + " 6:" + (Interval[j + outputint] + Dwelltime[j + outputint + 1]));
+                            outputint++;
+                        }
+                        outputint = 0;
+                    }
+                    if (key[j] == "U" && key[j + 1] == "D2" && key[j + 2] == "D4")//地(一ㄉˋ)
+                    {
+                        while (outputint < 1)
+                        {
+                            sw_6.WriteLine("1 1:2 2:" + Interval[j + outputint] + " 3:" + Dwelltime[j + outputint] + " 4:" + (Dwelltime[j + outputint] + Interval[j + outputint] + Dwelltime[j + outputint + 1]) + " 5:" + (Dwelltime[j + outputint] + Interval[j + outputint]) + " 6:" + (Interval[j + outputint] + Dwelltime[j + outputint + 1]));
                             outputint++;
                         }
                         outputint = 0;
@@ -271,6 +316,24 @@ namespace Statupwindow
                         }
                         outputint = 0;
                     }
+                    if (key[j] == "C" && key[j + 1] == "D9" && key[j + 2] == "D3")//海(ㄏㄞˇ)
+                    {
+                        while (outputint < 1)
+                        {
+                            sw_7.WriteLine("1 1:1 2:" + Interval[j + outputint] + " 3:" + Dwelltime[j + outputint] + " 4:" + (Dwelltime[j + outputint] + Interval[j + outputint] + Dwelltime[j + outputint + 1]) + " 5:" + (Dwelltime[j + outputint] + Interval[j + outputint]) + " 6:" + (Interval[j + outputint] + Dwelltime[j + outputint + 1]));
+                            outputint++;
+                        }
+                        outputint = 0;
+                    }
+                    if (key[j] == "D9" && key[j + 1] == "C" && key[j + 2] == "D3")//海(ㄞㄏˇ)
+                    {
+                        while (outputint < 1)
+                        {
+                            sw_7.WriteLine("1 1:2 2:" + Interval[j + outputint] + " 3:" + Dwelltime[j + outputint] + " 4:" + (Dwelltime[j + outputint] + Interval[j + outputint] + Dwelltime[j + outputint + 1]) + " 5:" + (Dwelltime[j + outputint] + Interval[j + outputint]) + " 6:" + (Interval[j + outputint] + Dwelltime[j + outputint + 1]));
+                            outputint++;
+                        }
+                        outputint = 0;
+                    }
                     if (key[j] == "C" && key[j + 1] == "D9" && key[j + 2] == "D3" && key[j + 3] == "D0" && key[j + 4] == "D4")//海岸
                     {
                         while (outputint < 1)
@@ -285,6 +348,24 @@ namespace Statupwindow
                         while (outputint < 1)
                         {
                             sw_3.WriteLine("1 1:2 2:" + Interval[j + outputint] + " 3:" + Dwelltime[j + outputint] + " 4:" + (Dwelltime[j + outputint] + Interval[j + outputint] + Dwelltime[j + outputint + 1]) + " 5:" + (Dwelltime[j + outputint] + Interval[j + outputint]) + " 6:" + (Interval[j + outputint] + Dwelltime[j + outputint + 1]));
+                            outputint++;
+                        }
+                        outputint = 0;
+                    }
+                    if (key[j] == "W" && key[j + 1] == "D9" && key[j + 2] == "D6")//臺(ㄊㄞˊ)
+                    {
+                        while (outputint < 1)
+                        {
+                            sw_8.WriteLine("1 1:1 2:" + Interval[j + outputint] + " 3:" + Dwelltime[j + outputint] + " 4:" + (Dwelltime[j + outputint] + Interval[j + outputint] + Dwelltime[j + outputint + 1]) + " 5:" + (Dwelltime[j + outputint] + Interval[j + outputint]) + " 6:" + (Interval[j + outputint] + Dwelltime[j + outputint + 1]));
+                            outputint++;
+                        }
+                        outputint = 0;
+                    }
+                    if (key[j] == "D9" && key[j + 1] == "W" && key[j + 2] == "D6")//臺(ㄞㄊˊ)
+                    {
+                        while (outputint < 1)
+                        {
+                            sw_8.WriteLine("1 1:2 2:" + Interval[j + outputint] + " 3:" + Dwelltime[j + outputint] + " 4:" + (Dwelltime[j + outputint] + Interval[j + outputint] + Dwelltime[j + outputint + 1]) + " 5:" + (Dwelltime[j + outputint] + Interval[j + outputint]) + " 6:" + (Interval[j + outputint] + Dwelltime[j + outputint + 1]));
                             outputint++;
                         }
                         outputint = 0;
@@ -315,11 +396,19 @@ namespace Statupwindow
                 sw_2.Close();
                 sw_3.Close();
                 sw_4.Close();
+                sw_5.Close();
+                sw_6.Close();
+                sw_7.Close();
+                sw_8.Close();
                 sr.Close();
                 sw_1.Dispose();
                 sw_2.Dispose();
                 sw_3.Dispose();
                 sw_4.Dispose();
+                sw_5.Dispose();
+                sw_6.Dispose();
+                sw_7.Dispose();
+                sw_8.Dispose();
                 sr.Dispose();
             }
     }

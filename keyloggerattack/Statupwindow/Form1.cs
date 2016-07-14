@@ -20,17 +20,23 @@ namespace Statupwindow
         public static int Confidencelevel = 10;
 
         int counter = 0;
+        private void SetDefault(Button myDefaultBtn)
+        {
+            this.AcceptButton = myDefaultBtn;
+        }
         public Form1()
         {
             InitializeComponent();
-            AllocConsole();//出現命令提示字元
+            SetDefault(button4);
+           // AllocConsole();//出現命令提示字元
             //指定使用的容器
            label2.BackColor = Color.Transparent;
+            textBox1.Focus();
         }
-
+       
         private void button1_Click(object sender, EventArgs e)
         {
-            DialogResult myResult = MessageBox.Show("您初次使用嗎？", "使用者登入確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            /*DialogResult myResult = MessageBox.Show("您初次使用嗎？", "使用者登入確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (myResult == DialogResult.Yes)
             {
                 Form2 frm = new Form2(this);
@@ -175,28 +181,36 @@ namespace Statupwindow
 
         private void button4_Click(object sender, EventArgs e)
         {
-            if (File.Exists(@"..\..\..\keyloggerattack\Dataset\" + textBox1.Text + ".txt"))
+            if (textBox1.Text == "")
             {
-                MessageBox.Show("使用者存在。開始進行鍵盤蒐集。");
-                timer1.Interval = 1000; // 設定每秒觸發一次
-                timer1.Enabled = true; // 啟動 Timer
-                this.WindowState = FormWindowState.Minimized;
-                Thread collectThread = new Thread(new ThreadStart(ThreadMethod_collect));
-                collectThread.Name = "蒐集工作執行緒";
-                //string logPath = @"..\..\..\keyloggerattack\Dataset\" + textBox1.Text + ".txt";
-                collectThread.Start();
-                //while (collectThread.ThreadState != ThreadState.Stopped)
-                //{
-                //}
-                textBox1.Visible = false;
-                label2.Visible = false;
-                button4.Visible = false;
+                MessageBox.Show("請輸入您的使用者身分!!");
             }
             else
             {
-                MessageBox.Show("錯誤，使用者名稱不符。");
-                textBox1.Text = "";
+                if (File.Exists(@"..\..\..\keyloggerattack\Dataset\" + textBox1.Text + ".txt"))
+                {
+                    MessageBox.Show("使用者存在。開始進行鍵盤蒐集。");
+                    timer1.Interval = 1000; // 設定每秒觸發一次
+                    timer1.Enabled = true; // 啟動 Timer
+                    this.WindowState = FormWindowState.Minimized;
+                    Thread collectThread = new Thread(new ThreadStart(ThreadMethod_collect));
+                    collectThread.Name = "蒐集工作執行緒";
+                    //string logPath = @"..\..\..\keyloggerattack\Dataset\" + textBox1.Text + ".txt";
+                    collectThread.Start();
+                    //while (collectThread.ThreadState != ThreadState.Stopped)
+                    //{
+                    //}
+                    textBox1.Visible = false;
+                    label2.Visible = false;
+                    button4.Visible = false;
+                }
+                else
+                {
+                    MessageBox.Show("錯誤，使用者名稱不符。");
+                    textBox1.Text = "";
+                }
             }
+        
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -220,21 +234,22 @@ namespace Statupwindow
                   //  File.Delete(@"..\..\..\keyloggerattack\Dataset\log.txt");
                 //}
           //  }
-                if (counter == 20)//每運作十秒，系統會將使用者的鍵擊資料轉成SVM_After_ID，再透過SVM_After_ID建模成SVM_After_ID_model.txt，透過該模型和最初的模型進行SVM預測，看精準率多少。
+                if (counter == 180)
             {
-                Thread workerThread_run = new Thread(new ThreadStart(ThreadMethod_Run));
+
+                /*Thread workerThread_run = new Thread(new ThreadStart(ThreadMethod_Run));
                 workerThread_run.Name = "工作執行緒";
                 Thread workerThread_svm = new Thread(new ThreadStart(ThreadMethod_svm));
-                workerThread_svm.Name = "SVM執行緒";
+                workerThread_svm.Name = "SVM執行緒";*/
                 if (File.Exists(@"..\..\..\keyloggerattack\Dataset\log.txt"))
                     {
-                        
-                        workerThread_run.Start();
-                        /*while (workerThread_run.ThreadState != ThreadState.Stopped)
-                        {
-                        }*/
-                         
-                         workerThread_svm.Start();
+                        run_result.Read(textBox1.Text);
+                        //workerThread_run.Start();
+                    /*while (workerThread_run.ThreadState != ThreadState.Stopped)
+                    {
+                    }*/
+                        LIB.Libsvm(textBox1.Text, Confidencelevel);
+                         //workerThread_svm.Start();
                          /*while (workerThread_svm.ThreadState != ThreadState.Stopped)
                         {
                         }*/
@@ -251,7 +266,7 @@ namespace Statupwindow
                     workerThread_run.();
                     workerThread_svm.Resume();
                 }*/
-
+                counter = 0;
                 }
             }
 
@@ -262,7 +277,59 @@ namespace Statupwindow
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
+        
+        }
 
+        private void textBox1_Click(object sender, EventArgs e)
+        {
+            //textBox1.Text = System.Security.Principal.WindowsIdentity.GetCurrent().Name;
+            textBox1.Text = "";
+            textBox1.ForeColor = Color.Black;
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            if ((File.Exists(@"..\..\..\keyloggerattack\Dataset\log.txt")))
+            {
+                File.Delete(@"..\..\..\keyloggerattack\Dataset\log.txt");
+            }
+            Application.Exit();
+            
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox2_Click(object sender, EventArgs e)
+        {
+            textBox2.Text = "";
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+            DialogResult myResult = MessageBox.Show("您初次使用嗎？", "使用者登入確認", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (myResult == DialogResult.Yes)
+            {
+                Form3 frm = new Form3(this);
+                frm.ShowDialog();
+            }
+            else if (myResult == DialogResult.No)
+            {
+                //按了否
+            }
+            /*Thread collectThread = new Thread(new ThreadStart(ThreadMethod_collect));
+            collectThread.Name = "蒐集工作執行緒";
+            collectThread.Start();
+            while (collectThread.ThreadState != ThreadState.Stopped)
+            {
+            }*/
         }
     }
 }
